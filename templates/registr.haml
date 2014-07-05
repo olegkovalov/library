@@ -1,0 +1,15 @@
+{% extends "base.haml" %}
+{% from '_formhelpers.haml' import render_field %}
+
+{% block body %}
+.row
+    .col-xs-6
+        %form role="form" enctype="multipart/form-data" action="{{ url_for('edit_paragraph', title=paragraph.slug) }}" method="post"
+            {{ render_field(form.name, 'font', 'Name') }}
+            {{ render_field(form.image, 'folder-open', 'Upload') }}
+            {{ render_field(form.amount, 'shopping-cart', )}}
+            {{ form.hidden_tag() }}
+            %button.btn.btn-success type="submit" value="submit"
+                %span.glyphicon.glyphicon-edit
+                {{ 'Edit' }}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.haml" %}
+{% block title %}{{ 'Edit author' }}{% endblock %}
+{% from '_formhelpers.haml' import render_field %}
+
+{% block body %}
+.row
+    .col-xs-6
+        %form role="form" action="{{ url_for('edit_author', name=name) }}" method="post"
+            {{ render_field(form.name, 'user', 'author') }}
+            {{ render_field(form.title, 'book', 'book, book1, book2...') }}
+            {{ form.hidden_tag() }}
+            %button.btn.btn-success type="submit" value="submit"
+                %span.glyphicon.glyphicon-edit
+                {{ 'Edit' }}
+{% endblock %}

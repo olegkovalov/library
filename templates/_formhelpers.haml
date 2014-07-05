@@ -1,0 +1,16 @@
+{% macro render_field(field, icon, text) %}
+
+.form-group
+    .input-group
+        <span class="input-group-addon"><span class="glyphicon glyphicon-{{ icon }}"></span></span>
+        {{ field(class='form-control', placeholder=text) }}
+
+{% if field.errors %}
+.form-error
+    {% for error in field.errors %}
+        .alert.alert-danger
+            {{ error }}
+    {% endfor %}
+{% endif %}
+
+{% endmacro %}

@@ -1,0 +1,15 @@
+{% extends "base.haml" %}
+{% block title %}{{ 'Log in' }}{% endblock %}
+{% from '_formhelpers.haml' import render_field %}
+
+{% block body %}
+.row
+    .col-xs-6
+        %form role="form" action="{{ url_for('login') }}" method="post"
+            {{ render_field(form.nickname, 'user', 'nickname') }}
+            {{ render_field(form.password, 'lock', 'password') }}
+            {{ form.hidden_tag() }}
+            %button.btn.btn-success type="submit" value="submit"
+                %span.glyphicon.glyphicon-edit
+                {{ 'Login' }}
+{% endblock %}

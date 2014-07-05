@@ -1,0 +1,33 @@
+.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+    .container
+        .navbar-header
+            %button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+                %span.sr-only -> Toggle navigation
+                %span.icon-bar
+                %span.icon-bar
+                %span.icon-bar
+            %a.navbar-brand href="{{ url_for('index') }}"
+                %span.glyphicon.glyphicon-book
+                Library
+        .collapse.navbar-collapse
+            %ul.nav.navbar-nav
+                %form.navbar-form.navbar.left role="search" action={{ url_for('search') }} id="form-search" method="post"
+                    .form-group
+                        .input-group
+                                %input.form-control type="text" name="query" placeholder=search
+                    %button.btn.btn-default type="submit" -> %span.glyphicon.glyphicon-search
+            -if 'nickname' in session
+                %ul.nav.navbar-nav
+                    %li -> %a href="{{ url_for('add_book') }}" -> Add book
+                    %li -> %a href="{{ url_for('add_author') }}" -> Add author
+                %ul.nav.navbar-nav.navbar-right
+                    %li
+                        .btn-group.navbar-btn
+                            %button.btn.btn-info type="button" -> Hi, <strong> {{ session['nickname'] }}</strong>!
+                    %li
+                        %form.navbar-form.navbar-right role="form" action="{{ url_for('login') }}" method="post"
+                            %button.btn.btn-success type="submit" name="logout" value="logout" -> Logout
+            -else
+                %ul.nav.navbar-nav.navbar-right
+                    %li -> %a href="{{ url_for('login') }}" -> Log in
+                    %li -> %a href="{{ url_for('signup') }}" -> Sign up
